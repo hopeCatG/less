@@ -1,0 +1,21 @@
+// 定义方法
+//遍历使用的是for循环
+//less没有循环语法
+//使用函数的迭代 死循环
+//根据数组的长度去停止当前循环
+//给函数的执行附加条件
+//需要序号来判断  通过序号遍历 @index 1 开始
+//遍历成功
+//            (@index)->形参  ( @index > 0)-> 循环终止条件
+.adapterMixin(@index) when ( @index > 0){
+		//          extract方法  查询数组指定序号对应的内容
+  @media (min-width: extract(@adapterDeviceList,@index)){
+    html{
+		        //换算公式 当前rem基准值 = 预设的基准值 / 设计稿宽度 * 当前设备的宽度
+      font-size: @baseFontSize / @psdWidth * extract(@adapterDeviceList,@index);
+    }
+  }
+  //自调用 i--
+  .adapterMixin( @index - 1);
+}
+
